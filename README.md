@@ -1,1 +1,1 @@
-# amazonpay-mobile-sample_android
+# amazonpay-mobile-samaple_android
