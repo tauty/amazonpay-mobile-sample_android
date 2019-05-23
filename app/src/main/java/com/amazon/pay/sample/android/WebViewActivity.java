@@ -5,6 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
 
+/**
+ * WEBVIEW(WebViewを使った、HTML&CSS&JavaScriptベースのアプリのサンプル).
+ */
 public class WebViewActivity extends AppCompatActivity {
 
     @Override

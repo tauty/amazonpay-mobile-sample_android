@@ -22,7 +22,7 @@
         <activity android:name=".NativeActivity" />
         <activity android:name=".WebViewActivity" />
         <activity android:name=".AmazonPayActivity">
-            <intent-filter>
+            <intent-filter> <!-- ブラウザからのIntentでActivityを起動させるための設定. 参考: https://developer.chrome.com/multidevice/android/intents -->
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ThanksActivity">
-            <intent-filter>
+            <intent-filter> <!-- ブラウザからのIntentでActivityを起動させるための設定. 参考: https://developer.chrome.com/multidevice/android/intents -->
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />

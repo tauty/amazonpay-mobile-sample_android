@@ -24,6 +24,11 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/**
+ * MainActivityから起動される、NATIVEサンプル用Activity(通常のAndroid Applicationのサンプル).
+ * Kindle Fire HD8とKindle Fire HD10の購入個数を指定すると自動で受注が作成されて、
+ * AmazonPayボタンでChrome Custom Tabsの購入フローが起動する.
+ */
 public class NativeActivity extends AppCompatActivity {
 
     private volatile boolean isOkToPay = false;
@@ -46,9 +51,14 @@ public class NativeActivity extends AppCompatActivity {
         button.setOnClickListener(v -> {
             if (!NativeActivity.this.isOkToPay) return;
             CustomTabsIntent tabsIntent = new CustomTabsIntent.Builder().build();
+
+            // 別のActivityへの遷移時に、自動的にChrome Custom Tabsを終了させるためのフラグ設定.
             tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            // Chrome Custom Tabs終了時に、Historyとして残らないようにするためのフラグ設定.
             tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+
             tabsIntent.launchUrl(getApplicationContext(), Uri.parse("https://10.0.2.2:8443/button?token=" + this.token));
         });
     }

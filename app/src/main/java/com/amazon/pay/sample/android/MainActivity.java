@@ -5,6 +5,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
+/**
+ * アプリケーション起動時に表示される、MainActivity.
+ * 実行するサンプルを下記のどちらかから選択する.
+ * <ul>
+ *     <li>NATIVE(通常のAndroid Applicationのサンプル)</li>
+ *     <li>WEBVIEW(WebViewを使った、HTML&CSS&JavaScriptベースのアプリのサンプル)</li>
+ * </ul>
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override

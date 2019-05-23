@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.webkit.WebView;
 import android.widget.Button;
 
+/**
+ * 購入完了後に表示されるActivity.
+ * 受注の情報と取得した購入者情報などを表示する.
+ */
 public class ThanksActivity extends AppCompatActivity {
 
     @Override
