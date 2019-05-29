@@ -9,10 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import java.io.IOException;
 
@@ -51,6 +49,9 @@ public class NativeActivity extends AppCompatActivity {
         button.setOnClickListener(v -> {
             if (!NativeActivity.this.isOkToPay) return;
             CustomTabsIntent tabsIntent = new CustomTabsIntent.Builder().build();
+
+            // 起動するBrowserにChromeを指定
+            tabsIntent.intent.setPackage("com.android.chrome");
 
             // 別のActivityへの遷移時に、自動的にChrome Custom Tabsを終了させるためのフラグ設定.
             tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

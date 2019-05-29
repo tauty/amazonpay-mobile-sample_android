@@ -21,6 +21,9 @@ public class AmazonPayActivity extends AppCompatActivity {
 
         CustomTabsIntent tabsIntent = new CustomTabsIntent.Builder().build();
 
+        // 起動するBrowserにChromeを指定
+        tabsIntent.intent.setPackage("com.android.chrome");
+
         // 別のActivityへの遷移時に、自動的にChrome Custom Tabsを終了させるためのフラグ設定.
         tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -33,7 +36,7 @@ public class AmazonPayActivity extends AppCompatActivity {
 
     /**
      * Chrome Custom Tabsの購入フローから「戻る」により戻ってきた時に起動するCallback.
-     * ユーザにはWebViewActivityに戻ったように見えるようにするため、本Activityを終了させている.
+     * ユーザにはWebViewActivityに戻ったように見せかけるため、本Activityを終了させている.
      */
     @Override
     protected void onResume() {
