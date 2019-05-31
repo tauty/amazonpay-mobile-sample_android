@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -48,6 +49,8 @@ public class NativeActivity extends AppCompatActivity {
         ImageButton button = findViewById(R.id.amazon_pay_button);
         button.setOnClickListener(v -> {
             if (!NativeActivity.this.isOkToPay) return;
+            button.setEnabled(false);
+
             CustomTabsIntent tabsIntent = new CustomTabsIntent.Builder().build();
 
             // 起動するBrowserにChromeを指定
@@ -62,6 +65,17 @@ public class NativeActivity extends AppCompatActivity {
 
             tabsIntent.launchUrl(getApplicationContext(), Uri.parse("https://10.0.2.2:8443/button?token=" + this.token));
         });
+    }
+
+    /**
+     * 「戻る」により戻ってきた時に起動するCallback.
+     * 連打抑止用に無効化されたボタンを、再び有効にする.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ImageButton button = findViewById(R.id.amazon_pay_button);
+        button.setEnabled(true);
     }
 
     private void registerOrder() {
