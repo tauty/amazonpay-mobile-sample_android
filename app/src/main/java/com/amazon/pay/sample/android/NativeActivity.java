@@ -54,6 +54,8 @@ public class NativeActivity extends AppCompatActivity {
             CustomTabsIntent tabsIntent = new CustomTabsIntent.Builder().build();
 
             // 起動するBrowserにChromeを指定
+            // Note: Amazon Payでは他のブラウザがサポート対象に入っていないため、ここではChromeを指定している.
+            // [参考] https://pay.amazon.com/jp/help/202030010
             tabsIntent.intent.setPackage("com.android.chrome");
 
             // 別のActivityへの遷移時に、自動的にChrome Custom Tabsを終了させるためのフラグ設定.
