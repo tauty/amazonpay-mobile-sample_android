@@ -9,11 +9,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.Objects;
+import java.util.regex.Pattern;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -22,6 +26,8 @@ import okhttp3.FormBody.Builder;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
+import static android.view.View.*;
 
 /**
  * MainActivityから起動される、NATIVEサンプル用Activity(通常のAndroid Applicationのサンプル).
@@ -33,23 +39,50 @@ public class NativeActivity extends AppCompatActivity {
     private volatile boolean isOkToPay = false;
     private volatile String token;
 
+    private TextView errorMsg = null;
+    private EditText hd8Num = null;
+    private EditText hd10Num = null;
+    private Button registerButton = null;
+    private ImageButton amznButton = null;
+
+    private static final Pattern NUM_PTN = Pattern.compile("[0-9]+");
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_native);
 
-        MyTextWatcher watcher = new MyTextWatcher();
-        EditText hd8Num = findViewById(R.id.hd8_num);
-        hd8Num.addTextChangedListener(watcher);
-        EditText hd10Num = findViewById(R.id.hd10_num);
-        hd10Num.addTextChangedListener(watcher);
+        errorMsg = findViewById(R.id.error_msg);
+        hd8Num = findViewById(R.id.hd8_num);
+        hd10Num = findViewById(R.id.hd10_num);
+        registerButton = findViewById(R.id.register_button);
+        amznButton = findViewById(R.id.amazon_pay_button);
 
-        registerOrder();
+        // 初期状態では非表示
+        amznButton.setVisibility(INVISIBLE);
 
-        ImageButton button = findViewById(R.id.amazon_pay_button);
-        button.setOnClickListener(v -> {
+        registerButton.setOnClickListener(v -> {
+            if(isNotNumber(hd8Num) || isNotNumber(hd10Num)) {
+                errorMsg.setText("不正な数値です！");
+                return;
+            }
+            if(isZero(hd8Num) && isZero(hd10Num)) {
+                errorMsg.setText("せめて一つは買ってください！");
+                return;
+            }
+
+            errorMsg.setText("");
+            hd8Num.setEnabled(false);
+            hd10Num.setEnabled(false);
+            registerButton.setVisibility(INVISIBLE);
+            amznButton.setVisibility(VISIBLE);
+
+            registerOrder();
+        });
+
+        amznButton.setOnClickListener(v -> {
             if (!NativeActivity.this.isOkToPay) return;
-            button.setEnabled(false);
+            amznButton.setEnabled(false);
 
             CustomTabsIntent tabsIntent = new CustomTabsIntent.Builder().build();
 
@@ -108,33 +141,16 @@ public class NativeActivity extends AppCompatActivity {
         if (this.token != null) {
             builder.add("token", this.token);
         }
-        applyTextView(builder, R.id.hd8_num, "hd8");
-        applyTextView(builder, R.id.hd10_num, "hd10");
+        builder.add("hd8", String.valueOf(hd8Num.getText()));
+        builder.add("hd10", String.valueOf(hd10Num.getText()));
         return builder.build();
     }
 
-    private void applyTextView(Builder builder, int id, String key) {
-        EditText et = findViewById(id);
-        String s = String.valueOf(et.getText());
-        System.out.println("applyTextView: " + s);
-        builder.add(key, s.isEmpty() ? "0" : s);
+    private boolean isNotNumber(EditText et) {
+        return !NUM_PTN.matcher(String.valueOf(et.getText())).matches();
     }
 
-    private class MyTextWatcher implements TextWatcher {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            // Do nothing
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            // Do nothing
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            registerOrder();
-        }
+    private boolean isZero(EditText et) {
+        return Objects.equals(String.valueOf(et.getText()), "0");
     }
-
 }
