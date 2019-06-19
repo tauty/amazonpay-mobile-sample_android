@@ -45,7 +45,7 @@ public class NativeActivity extends AppCompatActivity {
     private Button registerButton = null;
     private ImageButton amznButton = null;
 
-    private static final Pattern NUM_PTN = Pattern.compile("[0-9]+");
+    private static final Pattern NUM_PTN = Pattern.compile("(0|[1-9][0-9]*)");
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -98,7 +98,7 @@ public class NativeActivity extends AppCompatActivity {
             // Chrome Custom Tabs終了時に、Historyとして残らないようにするためのフラグ設定.
             tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
-            tabsIntent.launchUrl(getApplicationContext(), Uri.parse("https://10.0.2.2:8443/button?token=" + this.token));
+            tabsIntent.launchUrl(getApplicationContext(), Uri.parse(getString(R.string.base_url) + "button?token=" + this.token));
         });
     }
 
@@ -116,7 +116,7 @@ public class NativeActivity extends AppCompatActivity {
     private void registerOrder() {
         this.isOkToPay = false;
         final Request request = new Request.Builder()
-                .url("https://10.0.2.2:8443/registerOrder")
+                .url(getString(R.string.base_url) + "registerOrder")
                 .header("User-Agent", "Example client")
                 .post(createFormBody())
                 .build();

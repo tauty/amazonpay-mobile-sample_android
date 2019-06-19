@@ -19,6 +19,6 @@ public class WebViewActivity extends AppCompatActivity {
 
         webView.getSettings().setJavaScriptEnabled(true);
 
-        webView.loadUrl("https://10.0.2.2:8443/order.html");
+        webView.loadUrl(getString(R.string.base_url) + "order.html");
     }
 }

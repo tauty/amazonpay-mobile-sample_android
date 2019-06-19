@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">AndroidSample</string>
+    <string name="app_name">AmazonPay mobile sample</string>
+    <string name="base_url">https://localhost:8443/</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.amazon.pay.sample.android;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.customtabs.CustomTabsIntent;
@@ -33,7 +34,8 @@ public class AmazonPayActivity extends AppCompatActivity {
         // Chrome Custom Tabs終了時に、Historyとして残らないようにするためのフラグ設定.
         tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
-        tabsIntent.launchUrl(getApplicationContext(), Uri.parse("https://10.0.2.2:8443/button?token=" + token));
+        tabsIntent.launchUrl(getApplicationContext(), Uri.parse(getString(R.string.base_url)
+                + "button?token=" + token));
     }
 
     /**

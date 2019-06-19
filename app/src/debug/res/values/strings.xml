@@ -1,0 +1,4 @@
+<resources>
+    <string name="base_url">https://10.0.2.2:8443/</string>
+    <!-- string name="base_url">https://localhost:8443/</string -->
+</resources>
