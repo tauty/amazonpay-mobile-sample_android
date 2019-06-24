@@ -20,6 +20,7 @@ Android 7以降: Google Chrome 64以降
 ## WebView版
 WebView(アプリ内ブラウザ)を使ったアプリ向けの実装サンプルです。  
 基本的な流ればNative版と同じで、WebView内で商品の購入数を選んで受注情報を作成し、Chrome Custom Tabsを起動してAmazon Payへのログイン・住所＆支払い方法の選択・購入を実施し、またアプリ側に戻って購入完了画面を表示します。  
+※ Amazon Payではセキュリティ確保のとため、URLを隠したり偽装したりできてしまうWebView上でのログイン処理を原則禁止しております。そのため、本サンプルのようにChrome Custom Tabsへ処理を飛ばす必要があります。
 
 ### 動作環境
 Android 7以降: Google Chrome 64以降  
@@ -32,11 +33,16 @@ Android 7以降: Google Chrome 64以降
 ./flow-android.xlsx の「WebView」タブ参照。  
 ※ 同flowには各処理のURL, 処理するClass名、HTMLテンプレート名なども記載されているので、サンプルコードを読む時にもご参照ください。
 
-# インストール
+# Android版サンプルアプリのインストール
 
-### open the android project & start
-clinentのandroid側のプロジェクトは、Android Studioで開きます。
-Android StudioはIntellijをベースに開発されていますので、基本的な流れはserver側とほぼ同様です。
+## プロジェクトのclone
+まずは、clinentのandroid側にあたる本プロジェクトをcloneしてください。  
+```
+git clone https://github.com/tauty/amazonpay-mobile-sample_android.git
+```
+
+## プロジェクトのOpenとサンプルアプリの起動
+本プロジェクトは、[Android Studio(無料)](https://developer.android.com/studio/)で開きます。
 まずはAndroid Studioを立ち上げます。  
 *※ 下記の画面になっていない場合は、Android Studioで開いているプロジェクトを全て閉じてください。*  
 ![androidstudio-welcome](img/android_welcome.png)
@@ -47,14 +53,14 @@ Android StudioはIntellijをベースに開発されていますので、基本�
 下記のようなapplicationを実行するAndroidデバイス or Virtual Device(Emulatorで起動される、仮想的なAndroidデバイス)を選択する画面が開きます。今回はEmulatorでの起動方法を説明します。  
 「Create New Virtual Device」をクリックします。  
 ![androidstudio-select-emu](img/android_select_emu.png)
-今回のサンプルはSDK28で作成されていますので、それ以上のVersionのVirtual Deviceがあればそちらを選択します。
+今回のサンプルはAPI Level 24 から 28で動作しますので、該当するVersionのVirtual Deviceがあればそちらを選択します。
 そうでなければ、ここで「Create New Virtual Device」をクリックして、Virtual Deviceを作成します。  
 ![androidstudio-select-hard](img/android_select_hard.png)
 左側の「Category」で「Phone」を選択し、開発に用いたい端末を選択します。  
 *※特にこだわりがなければ、デフォルトで選択されているもので構いません。*  
 「Next」をクリックします。
 ![androidstudio-select-version](img/android_select_ver.png)
-API Level 28の「Pie」を選んで、「Next」。  
+API Level 24 から 28のうち好きなものをを選んで、「Next」。  
 *※まだDownloadされていない場合には、「Download」より、画面の指示に従ってDownloadしてください。*
 ![androidstudio-select-finish](img/android_select_fin.png)
 「Finish」でVirtual Deviceの生成が開始されますので、数分お待ちください。  
@@ -63,7 +69,7 @@ API Level 28の「Pie」を選んで、「Next」。
 Emulatorが立ち上がり、サンプルアプリが起動します。(1〜2分かかります。)  
 <img src="img/emu_start.png" width="300">
 
-#### install SSL self-certification
+## 自己証明書のインストール
 今回のサンプルでは、server側のSSL証明書に自己証明書が使用されているため、サンプルアプリを正しく動作させるためにはその自己証明書をAndroid側にInstallする必要があります。  
 ここでは、Emulatorで起動したVirtual DeviceへのInstall方法を説明します。
 
