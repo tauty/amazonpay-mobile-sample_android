@@ -116,7 +116,7 @@ public class NativeActivity extends AppCompatActivity {
     private void registerOrder() {
         this.isOkToPay = false;
         final Request request = new Request.Builder()
-                .url(getString(R.string.base_url) + "registerOrder")
+                .url(getString(R.string.base_url) + "register_order")
                 .header("User-Agent", "Example client")
                 .post(createFormBody())
                 .build();
@@ -138,9 +138,6 @@ public class NativeActivity extends AppCompatActivity {
 
     private FormBody createFormBody() {
         Builder builder = new Builder();
-        if (this.token != null) {
-            builder.add("token", this.token);
-        }
         builder.add("hd8", String.valueOf(hd8Num.getText()));
         builder.add("hd10", String.valueOf(hd10Num.getText()));
         return builder.build();

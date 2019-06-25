@@ -36,13 +36,13 @@ Android 7以降: Google Chrome 64以降
 # Android版サンプルアプリのインストール
 
 ## プロジェクトのclone
-まずは、clinentのandroid側にあたる本プロジェクトをcloneしてください。  
+まずは、clientのandroid側にあたる本プロジェクトをcloneしてください。  
 ```
 git clone https://github.com/tauty/amazonpay-mobile-sample_android.git
 ```
 
 ## プロジェクトのOpenとサンプルアプリの起動
-本プロジェクトは、[Android Studio(無料)](https://developer.android.com/studio/)で開きます。
+本プロジェクトは、[Android Studio(無料)](https://developer.android.com/studio/)で開きます。そのほかのIDEでも開くことはできますが、ここでは上記のIDEでの開き方を説明します。  
 まずはAndroid Studioを立ち上げます。  
 *※ 下記の画面になっていない場合は、Android Studioで開いているプロジェクトを全て閉じてください。*  
 ![androidstudio-welcome](img/android_welcome.png)
