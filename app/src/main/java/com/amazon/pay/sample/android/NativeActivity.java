@@ -31,12 +31,11 @@ import static android.view.View.*;
 
 /**
  * MainActivityから起動される、NATIVEサンプル用Activity(通常のAndroid Applicationのサンプル).
- * Kindle Fire HD8とKindle Fire HD10の購入個数を指定すると自動で受注が作成されて、
+ * Kindle Fire HD8とKindle Fire HD10の購入個数を指定して「購入手続きへ」ボタンをクリックすると受注が作成されて、
  * AmazonPayボタンでChrome Custom Tabsの購入フローが起動する.
  */
 public class NativeActivity extends AppCompatActivity {
 
-    private volatile boolean isOkToPay = false;
     private volatile String token;
 
     private TextView errorMsg = null;
@@ -81,7 +80,7 @@ public class NativeActivity extends AppCompatActivity {
         });
 
         amznButton.setOnClickListener(v -> {
-            if (!NativeActivity.this.isOkToPay) return;
+            if (NativeActivity.this.token == null) return;
             amznButton.setEnabled(false);
 
             CustomTabsIntent tabsIntent = new CustomTabsIntent.Builder().build();
@@ -114,7 +113,6 @@ public class NativeActivity extends AppCompatActivity {
     }
 
     private void registerOrder() {
-        this.isOkToPay = false;
         final Request request = new Request.Builder()
                 .url(getString(R.string.base_url) + "create_order_rest")
                 .header("User-Agent", "Example client")
@@ -131,7 +129,6 @@ public class NativeActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 NativeActivity.this.token = response.body().string();
-                NativeActivity.this.isOkToPay = true;
             }
         });
     }

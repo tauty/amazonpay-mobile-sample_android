@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
 
 /**
- * WEBVIEW(WebViewを使った、HTML&CSS&JavaScriptベースのアプリのサンプル).
+ * MainActivityから起動される、WEBVIEWサンプル用Activity(WebViewを使ったAndroid Applicationのサンプル).
  */
 public class WebViewActivity extends AppCompatActivity {
 
