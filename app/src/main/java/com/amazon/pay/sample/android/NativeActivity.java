@@ -116,7 +116,7 @@ public class NativeActivity extends AppCompatActivity {
     private void registerOrder() {
         this.isOkToPay = false;
         final Request request = new Request.Builder()
-                .url(getString(R.string.base_url) + "register_order")
+                .url(getString(R.string.base_url) + "create_order_rest")
                 .header("User-Agent", "Example client")
                 .post(createFormBody())
                 .build();
