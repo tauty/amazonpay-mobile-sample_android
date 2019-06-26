@@ -25,6 +25,8 @@ public class AmazonPayActivity extends AppCompatActivity {
         // 起動するBrowserにChromeを指定
         // Note: Amazon Payでは他のブラウザがサポート対象に入っていないため、ここではChromeを指定している.
         // [参考] https://pay.amazon.com/jp/help/202030010
+        // もしその他のChrome Custom Tabs対応のブラウザを起動する必要がある場合には、下記リンク先ソースなどを参考に実装する.
+        // [参考] https://github.com/GoogleChrome/custom-tabs-client/blob/master/shared/src/main/java/org/chromium/customtabsclient/shared/CustomTabsHelper.java#L64
         tabsIntent.intent.setPackage("com.android.chrome");
 
         // 別のActivityへの遷移時に、自動的にChrome Custom Tabsを終了させるためのフラグ設定.
