@@ -14,7 +14,7 @@ Android 7以降: Google Chrome 64以降
 ![native_flow](img/native.gif)
 
 ### 詳細フロー
-./flow-android.xlsx の「Native」タブ参照。  
+[flow-android.xlsx](./flow-android.xlsx) の「Native」タブ参照。  
 ※ 同flowには各処理のURL, 処理するClass名、HTMLテンプレート名なども記載されているので、サンプルコードを読む時にもご参照ください。
 
 ## WebView版
@@ -30,7 +30,7 @@ Android 7以降: Google Chrome 64以降
 ![webview_flow](img/webview.gif)
 
 ### 詳細フロー
-./flow-android.xlsx の「WebView」タブ参照。  
+[flow-android.xlsx](./flow-android.xlsx) の「WebView」タブ参照。  
 ※ 同flowには各処理のURL, 処理するClass名、HTMLテンプレート名なども記載されているので、サンプルコードを読む時にもご参照ください。
 
 # Android版サンプルアプリのインストール
