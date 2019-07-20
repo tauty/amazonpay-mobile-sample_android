@@ -116,7 +116,7 @@ public class NativeActivity extends AppCompatActivity {
 
     private void registerOrder() {
         final Request request = new Request.Builder()
-                .url(getString(R.string.base_url) + "create_order_rest")
+                .url(getString(R.string.base_url) + "android/create_order_rest")
                 .header("User-Agent", "Example client")
                 .post(createFormBody())
                 .build();
