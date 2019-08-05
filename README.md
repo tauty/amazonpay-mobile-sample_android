@@ -97,3 +97,8 @@ PINを聞かれるので、先ほど設定した値を入力します。
 
 あとはEmulator上でサンプルアプリを立ち上げて動作をご確認ください。
 AndroidのNativeのアプリからAmazonPayで購入するサンプルと、WebViewからAmazonPayで購入するサンプルの、両方の動作をご確認いただけます。
+
+# Login with Amazonと会員連携について
+今回のサンプルで提示した方式を応用することで、Amazon Accountを用いた会員連携も実現できます。
+実装イメージは、[flow-android-login.xlsx](./flow-android-login.xlsx)をご参照ください。
+※ 参考 - Login with Amazonの詳細: https://developer.amazon.com/ja/docs/login-with-amazon/web-docs.html
