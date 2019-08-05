@@ -100,5 +100,5 @@ AndroidのNativeのアプリからAmazonPayで購入するサンプルと、WebV
 
 # Login with Amazonと会員連携について
 今回のサンプルで提示した方式を応用することで、Amazon Accountを用いた会員連携も実現できます。
-実装イメージは、[flow-android-login.xlsx](./flow-android-login.xlsx)をご参照ください。
+実装イメージは、[flow-android-login.xlsx](./flow-android-login.xlsx)をご参照ください。  
 ※ 参考 - Login with Amazonの詳細: https://developer.amazon.com/ja/docs/login-with-amazon/web-docs.html
