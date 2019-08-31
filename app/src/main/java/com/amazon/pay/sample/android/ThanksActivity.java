@@ -29,6 +29,10 @@ public class ThanksActivity extends AppCompatActivity {
         WebView webView = findViewById(R.id.web_view);
         webView.getSettings().setJavaScriptEnabled(true);
         String token = this.getIntent().getStringExtra("token");
+        String appToken = this.getIntent().getStringExtra("appToken");
+
+        System.out.println("token = " + token + ", appToken = " + appToken + ", tokenRetained = " + Holder.appToken);
+
         String data = "token=" + token;
         webView.postUrl(getString(R.string.base_url) + "thanks", data.getBytes());
     }

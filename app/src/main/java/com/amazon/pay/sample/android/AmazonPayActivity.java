@@ -36,6 +36,9 @@ public class AmazonPayActivity extends AppCompatActivity {
         // Chrome Custom Tabs終了時に、Historyとして残らないようにするためのフラグ設定.
         tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
+        // tokenの保持
+        Holder.appToken = token;
+
         tabsIntent.launchUrl(getApplicationContext(), Uri.parse(getString(R.string.base_url)
                 + "button?token=" + token));
     }
