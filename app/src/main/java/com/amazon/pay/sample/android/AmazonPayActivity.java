@@ -39,8 +39,14 @@ public class AmazonPayActivity extends AppCompatActivity {
         // tokenの保持
         Holder.appToken = token;
 
-        tabsIntent.launchUrl(getApplicationContext(), Uri.parse(getString(R.string.base_url)
-                + "button?token=" + token));
+        String path = "button?token=" + token + "&mode=" + Holder.mode;
+        String showWidgets = this.getIntent().getStringExtra("showWidgets");
+        if(showWidgets != null) {
+            path += "&showWidgets=true";
+        }
+
+        // Chrome Custom Tabsの起動
+        tabsIntent.launchUrl(getApplicationContext(), Uri.parse(getString(R.string.base_url) + path));
     }
 
     /**

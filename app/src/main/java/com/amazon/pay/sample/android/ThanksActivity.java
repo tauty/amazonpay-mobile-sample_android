@@ -29,12 +29,21 @@ public class ThanksActivity extends AppCompatActivity {
         WebView webView = findViewById(R.id.web_view);
         webView.getSettings().setJavaScriptEnabled(true);
         String token = this.getIntent().getStringExtra("token");
-        String appToken = this.getIntent().getStringExtra("appToken");
 
-        System.out.println("token = " + token + ", appToken = " + appToken + ", tokenRetained = " + Holder.appToken);
+        if(isTokenNG(token, this.getIntent().getStringExtra("appToken"))) {
+            webView.loadUrl("error");
+            return;
+        }
 
         String data = "token=" + token;
-        webView.postUrl(getString(R.string.base_url) + "thanks", data.getBytes());
+        String path;
+        if(Holder.mode.equals("app")) {
+            data += "&accessToken=" + this.getIntent().getStringExtra("accessToken");
+            path = "confirm_purchase";
+        } else {
+            path = "thanks";
+        }
+        webView.postUrl(getString(R.string.base_url) + path, data.getBytes());
     }
 
     /**
@@ -46,5 +55,17 @@ public class ThanksActivity extends AppCompatActivity {
         super.onResume();
         Button topButton = findViewById(R.id.button);
         topButton.setEnabled(true);
+    }
+
+    private boolean isTokenNG(String token, String appToken) {
+        if (!appToken.equals(Holder.appToken)) {
+            System.out.println("appToken doesn't match! app retained token:" + Holder.appToken + ", conveyed token:" + appToken);
+            return true;
+        }
+        if (token.equals(appToken)) {
+            System.out.println("token has not been refreshed! token:" + token);
+            return true;
+        }
+        return false;
     }
 }

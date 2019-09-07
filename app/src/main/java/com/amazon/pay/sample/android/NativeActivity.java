@@ -102,7 +102,9 @@ public class NativeActivity extends AppCompatActivity {
             // tokenの保持
             Holder.appToken = this.token;
 
-            tabsIntent.launchUrl(getApplicationContext(), Uri.parse(getString(R.string.base_url) + "button?token=" + this.token));
+            // Chrome Custom Tabsの起動
+            tabsIntent.launchUrl(getApplicationContext(),
+                    Uri.parse(getString(R.string.base_url) + "button?token=" + this.token + "&mode=" + Holder.mode));
         });
     }
 

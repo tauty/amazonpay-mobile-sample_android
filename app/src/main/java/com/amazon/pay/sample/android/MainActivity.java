@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
+import android.widget.RadioGroup;
 
 /**
  * アプリケーション起動時に表示される、MainActivity.
@@ -19,6 +20,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Holder.mode = "app";
+        RadioGroup rg = findViewById(R.id.mode);
+        rg.check(R.id.app);
+        rg.setOnCheckedChangeListener((g, id) -> Holder.mode = id == R.id.app ? "app" : "chrome");
 
         Button nativeButton = findViewById(R.id.button_native);
         nativeButton.setOnClickListener(
