@@ -113,7 +113,6 @@ PINを聞かれるので、先ほど設定した値を入力します。
 <img src="img/emu_install.png" width="300">  
 
 あとはEmulator上でサンプルアプリを立ち上げて動作をご確認ください。
-AndroidのNativeのアプリからAmazonPayで購入するサンプルと、WebViewからAmazonPayで購入するサンプルの、両方の動作をご確認いただけます。
 
 # Login with Amazonと会員連携について
 今回のサンプルで提示した方式を応用することで、Amazon Accountを用いた会員連携も実現できます。
