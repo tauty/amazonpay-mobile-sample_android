@@ -2,35 +2,52 @@
 下記のAndroidアプリの実装です。
 https://github.com/tauty/amazonpay-mobile-sample_server
 
-## Native版
-通常のAndroidアプリ向けの実装サンプルです。  
-アプリ側で商品の購入数を選んで受注情報を作成し、Chrome Custom Tabsを起動してAmazon Payへのログイン・住所＆支払い方法の選択・購入を実施し、またアプリ側に戻って購入完了画面を表示します。  
-
-### 動作環境
+## 動作環境
 Android 7以降: Google Chrome 64以降  
 [参考] https://pay.amazon.com/jp/help/202030010
 
-### 画面動作
-![native_flow](img/native.gif)
+## Native版
+通常のAndroidアプリ向けの実装サンプルです。  
 
-### 詳細フロー
-[flow-android.xlsx](./flow-android.xlsx) の「Native」タブ参照。  
+### アプリ側に購入ボタンがあるフロー
+アプリ側で商品の購入数を選んで受注情報を作成し、Chrome Custom Tabsを起動してAmazon Payへのログインしてデフォルトの住所＆支払い方法を取得し、アプリに戻って確認画面を表示して購入を実施します。  
+
+![a_app_native](img/a_app_native.gif)
+
+住所・支払い方法を変更したい場合には確認外面で「送付先・支払い変更」ボタンをクリックして再度ブラウザを立ち上げて選択します。
+
+![a_app_native_addr](img/a_app_native_addr.gif)  
+
+詳細は、[flow-android.xlsx](./flow-android.xlsx)の「Native - app決済」タブ参照。  
+※ 同flowには各処理のURL, 処理するClass名、HTMLテンプレート名なども記載されているので、サンプルコードを読む時にもご参照ください。
+
+### 起動したブラウザ側に購入ボタンがあるフロー
+アプリ側で商品の購入数を選んで受注情報を作成し、Chrome Custom Tabsを起動してAmazon Payへのログイン・住所＆支払い方法の選択・購入を実施し、またアプリ側に戻って購入完了画面を表示します。  
+![a_chrome_native](img/a_chrome_native.gif)  
+
+詳細は、[flow-android.xlsx](./flow-android.xlsx)の「Native - chrome決済」タブ参照。  
 ※ 同flowには各処理のURL, 処理するClass名、HTMLテンプレート名なども記載されているので、サンプルコードを読む時にもご参照ください。
 
 ## WebView版
-WebView(アプリ内ブラウザ)を使ったアプリ向けの実装サンプルです。  
-基本的な流ればNative版と同じで、WebView内で商品の購入数を選んで受注情報を作成し、Chrome Custom Tabsを起動してAmazon Payへのログイン・住所＆支払い方法の選択・購入を実施し、またアプリ側に戻って購入完了画面を表示します。  
+WebView(アプリ内ブラウザ)を使ったアプリ向けの実装サンプルです。 
+
+### アプリ側に購入ボタンがあるフロー
+基本的な流れはNative版と同じで、WebView内で商品の購入数を選んで受注情報を作成し、Chrome Custom Tabsを起動してAmazon Payへのログインしてデフォルトの住所＆支払い方法を取得し、アプリに戻って確認画面を表示して購入を実施します。  
 ※ Amazon Payではセキュリティ確保のとため、URLを隠したり偽装したりできてしまうWebView上でのログイン処理を原則禁止しております。そのため、本サンプルのようにChrome Custom Tabsへ処理を飛ばす必要があります。
 
-### 動作環境
-Android 7以降: Google Chrome 64以降  
-[参考] https://pay.amazon.com/jp/help/202030010
+![a_app_webview](img/a_app_webview.gif)
 
-### 画面動作
-![webview_flow](img/webview.gif)
+住所・支払い方法を変更したい場合には確認外面で「送付先・支払い変更」ボタンをクリックして再度ブラウザを立ち上げて選択します。
 
-### 詳細フロー
-[flow-android.xlsx](./flow-android.xlsx) の「WebView」タブ参照。  
+詳細は、[flow-android.xlsx](./flow-android.xlsx)の「WebView - app決済」タブ参照。  
+※ 同flowには各処理のURL, 処理するClass名、HTMLテンプレート名なども記載されているので、サンプルコードを読む時にもご参照ください。
+
+### 起動したブラウザ側に購入ボタンがあるフロー
+こちらもNative版と同じで、アプリ側で商品の購入数を選んで受注情報を作成し、Chrome Custom Tabsを起動してAmazon Payへのログイン・住所＆支払い方法の選択・購入を実施し、またアプリ側に戻って購入完了画面を表示します。
+
+![a_chrome_webview](img/a_chrome_webview.gif)
+
+詳細は、[flow-android.xlsx](./flow-android.xlsx)の「WebView - chrome決済」タブ参照。  
 ※ 同flowには各処理のURL, 処理するClass名、HTMLテンプレート名なども記載されているので、サンプルコードを読む時にもご参照ください。
 
 # Android版サンプルアプリのインストール
@@ -96,7 +113,6 @@ PINを聞かれるので、先ほど設定した値を入力します。
 <img src="img/emu_install.png" width="300">  
 
 あとはEmulator上でサンプルアプリを立ち上げて動作をご確認ください。
-AndroidのNativeのアプリからAmazonPayで購入するサンプルと、WebViewからAmazonPayで購入するサンプルの、両方の動作をご確認いただけます。
 
 # Login with Amazonと会員連携について
 今回のサンプルで提示した方式を応用することで、Amazon Accountを用いた会員連携も実現できます。
