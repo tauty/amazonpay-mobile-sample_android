@@ -35,7 +35,7 @@ public class ThanksActivity extends AppCompatActivity {
             return;
         }
 
-        String data = "token=" + token;
+        String data = "token=" + token + "&appKey=" + Holder.appKey;
         String path;
         if(Holder.mode.equals("app")) {
             data += "&accessToken=" + this.getIntent().getStringExtra("accessToken");

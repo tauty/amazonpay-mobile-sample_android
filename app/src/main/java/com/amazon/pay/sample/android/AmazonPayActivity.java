@@ -19,6 +19,7 @@ public class AmazonPayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_amazon_pay);
 
         String token = this.getIntent().getStringExtra("token");
+        String appKey = this.getIntent().getStringExtra("appKey");
 
         CustomTabsIntent tabsIntent = new CustomTabsIntent.Builder().build();
 
@@ -36,8 +37,9 @@ public class AmazonPayActivity extends AppCompatActivity {
         // Chrome Custom Tabs終了時に、Historyとして残らないようにするためのフラグ設定.
         tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
-        // tokenの保持
+        // token, appKeyの保持
         Holder.appToken = token;
+        Holder.appKey = appKey;
 
         String path = "button?token=" + token + "&mode=" + Holder.mode;
         String showWidgets = this.getIntent().getStringExtra("showWidgets");

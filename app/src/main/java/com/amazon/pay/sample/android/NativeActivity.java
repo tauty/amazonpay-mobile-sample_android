@@ -15,6 +15,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -135,7 +138,13 @@ public class NativeActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                NativeActivity.this.token = response.body().string();
+                try {
+                    JSONObject obj = new JSONObject(response.body().string());
+                    NativeActivity.this.token = obj.getString("token");
+                    Holder.appKey = obj.getString("appKey");
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
